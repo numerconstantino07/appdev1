@@ -1,31 +1,20 @@
+import { people } from './data';
 import { getImageUrl } from './utils';
 
-function Avatar({ person, size }) {
-  return (
-    <img
-      className="avatar"
-      src={getImageUrl(person)}
-      alt={person.name}
-      width={size}
-      height={size}
-    />
-  );
-}
+export default function List() {
+  const listItems = people.map(person => (
+    <li key={person.id}>
+      <img src={getImageUrl(person)} alt={person.name} />
+      <p>
+        <b>{person.name}:</b> {person.profession} known for {person.accomplishment}
+      </p>
+    </li>
+  ));
 
-function Card({ children }) {
-  return <div className="card">{children}</div>;
-}
-
-export default function Profile() {
   return (
-    <Card>
-      <Avatar
-        size={100}
-        person={{
-          name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2'
-        }}
-      />
-    </Card>
+    <article>
+      <h1>Scientists</h1>
+      <ul>{listItems}</ul>
+    </article>
   );
 }
